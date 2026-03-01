@@ -5,45 +5,39 @@ var Tarefa = /** @class */ (function () {
         this.concluida = false;
         this.dataCriacao = new Date();
     }
+    /* renderizar é um método, ou seja,( uma função dentro de uma classe) */
     Tarefa.prototype.renderizar = function () {
         var _this = this;
-        var li = document.createElement("li");
-        // 1. Criar o Checkbox
+        var li = document.createElement("li"); /* criar lista do ts para html */
+        /* criando checkbox */
         var checkbox = document.createElement("input");
         checkbox.type = "checkbox";
-        checkbox.checked = this.concluida;
-        // 2. Criar o texto/conteúdo
+        checkbox.checked = this.concluida; /* check, se concluido for verdadeiro */
+        /* criando o texto */
         var texto = document.createElement("div");
         texto.innerHTML = "\n      <strong>".concat(this.titulo, "</strong>\n      <p>").concat(this.descricao, "</p>\n      <small>Criado em: ").concat(this.dataCriacao.toLocaleString(), "</small>\n    ");
-        // 3. Evento do Checkbox
+        /* se vc clicar adiciona ou remove as classes com classlist, para sublinhar no css */
         checkbox.addEventListener("change", function () {
             _this.concluida = checkbox.checked;
-            // Adiciona ou remove a classe CSS para estilizar a tarefa feita
             li.classList.toggle("concluida", _this.concluida);
         });
-        // 4. Montagem (Ordem: Checkbox primeiro, depois o texto)
+        /* colocando os elementos na tela, ou seja, passa do ts para o html (appendChild) */
         li.appendChild(checkbox);
         li.appendChild(texto);
         return li;
     };
     return Tarefa;
 }());
-// --- Manipulação do DOM ---
+/* DOM: buscando os elementos no html para o ts  */
 var inputTitulo = document.getElementById("titulo_tarefa");
 var inputDescricao = document.getElementById("descricao");
 var botao = document.getElementById("botao-do-input");
 var listaUl = document.getElementById("lista_tarefas");
+/* se você clicar no botão, substitua o titulo e a descrição pelo valor digitado */
 botao.addEventListener("click", function () {
     var titulo = inputTitulo.value;
     var descricao = inputDescricao.value;
-    if (titulo.trim() === "") {
-        alert("Por favor, digite um título!");
-        return;
-    }
-    var novaTarefa = new Tarefa(titulo, descricao);
-    listaUl.appendChild(novaTarefa.renderizar());
-    // Limpar os campos após adicionar
-    inputTitulo.value = "";
-    inputDescricao.value = "";
-    inputTitulo.focus();
+    /* criando novo objeto (instância) da classe Tarefa */
+    var novaTarefa = new Tarefa(titulo, descricao); /* o objeto se chama novaTarefa */
+    listaUl.appendChild(novaTarefa.renderizar()); /* colocando elena tela */
 });

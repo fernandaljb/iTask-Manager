@@ -66,5 +66,6 @@ body {
 
 #titulo_tarefa:focus,
 #descricao:focus {
-    outline: none;
-    border: 1px solid #ffffff;
+  outline: none;
+  border: 1px solid #ffffff;
+}
