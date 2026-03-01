@@ -63,3 +63,8 @@ body {
   text-shadow: 0 0 15px #ffffff;
   transform: scale(1.3); /*zoom*/
 }
+
+#titulo_tarefa:focus,
+#descricao:focus {
+    outline: none;
+    border: 1px solid #ffffff;
